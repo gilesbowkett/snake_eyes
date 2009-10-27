@@ -1,3 +1,8 @@
+Snake Eyes
+==========
+
+Snake Eyes adds [ninja power][http://drmcninja.com/] to [CI Joe][http://github.com/defunkt/cijoe].
+
 CI Joe
 ======
 
