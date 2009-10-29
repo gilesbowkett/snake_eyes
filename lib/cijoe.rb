@@ -1,17 +1,19 @@
 ##
-# CI Joe.
-# Because knowing is half the battle.
+# Chris said:
+# Seriously, I'm gonna be nuts about keeping this simple.
 #
-# This is a stupid simple CI server. It can build one (1)
-# git-based project only.
+# Cool.
 #
-# It only remembers the last build.
-#
+# He also said:
 # It only notifies to Campfire.
 #
-# It's a RAH (Real American Hero).
+# Wait. What? No. I need it notifying via Gmail.
 #
-# Seriously, I'm gonna be nuts about keeping this simple.
+# And thus was born Snake Eyes, which brings ninja power to CI Joe.
+#
+# Specifically, the ninja power of Gmail.
+#
+# I suppose I should have called it Cnake Eyes, but it's too late now.
 
 begin
   require 'open4'
