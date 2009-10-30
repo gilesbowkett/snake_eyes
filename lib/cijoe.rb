@@ -11,9 +11,12 @@
 #
 # And thus was born Snake Eyes, which brings ninja power to CI Joe.
 #
-# Specifically, the ninja power of Gmail.
+# Specifically, the ninja power of Gmail. And of arbitrary notifiers
+# to anywhere, which really required very very little effort. Despite Chris'
+# anti-other-notifiers stance, he wrote one of the easiest APIs to extend
+# to other notifiers that I've ever seen.
 #
-# I suppose I should have called it Cnake Eyes, but it's too late now.
+# btw, I suppose I should have called it Cnake Eyes, but it's too late now.
 
 begin
   require 'open4'
@@ -26,6 +29,7 @@ require 'cijoe/config'
 require 'cijoe/commit'
 require 'cijoe/build'
 require 'cijoe/campfire'
+require 'cijoe/gmail'
 require 'cijoe/server'
 
 class CIJoe

@@ -55,7 +55,17 @@ class CIJoe
       check_project
       @joe = CIJoe.new(options.project_path)
 
-      CIJoe::Campfire.activate
+      # example .gitconfig:
+      # [cijoe]
+      #   notifier = CIJoe::Campfire
+      #
+      # or
+      # [cijoe]
+      #   notifier = CIJoe::Gmail
+      #
+      # this also gives you the option of running CI Joe without any notifier at all.
+
+      eval(Config.cijoe.notifier.to_s).activate unless Config.cijoe.notifier.nil?
     end
 
     def self.start(host, port, project_path)

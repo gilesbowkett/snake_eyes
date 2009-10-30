@@ -64,16 +64,17 @@ build. Pull any metadata you want out of that scro.
 Other Branches
 --------------
 
-Want joe to run against a branch other than `master`? No problem:
+Want Joe to run against a branch other than `master`? No problem:
 
     $ git config --add cijoe.branch deploy
 
 
-Campfire
---------
+Notifiers
+---------
 
-Campfire notification is included, because it's what we use. Want Joe
-notify your Campfire? Put this in your repo's `.git/config`:
+CI Joe includes Campfire notification, because it's what they use at GitHub,
+where CI Joe came into being. Want Joe to notify your Campfire? Put this in
+your repo's `.git/config`:
 
     [campfire]
     	user = your@campfire.email
@@ -82,13 +83,61 @@ notify your Campfire? Put this in your repo's `.git/config`:
     	room = Awesomeness
     	ssl = false
 
-Or do it the old fashion way:
+Or do it the old-fashioned way:
 
     $ cd yourrepo
     $ git config --add campfire.user chris@ozmm.org
     $ git config --add campfire.subdomain github
     etc.
 
+Snake Eyes gives you an additional option: Gmail. In `.git/config`:
+
+    [gmail]
+    	user = your_ci_joe@email
+    	pass = passw0rd
+    	recipient = developers@your-company.com
+
+Or:
+
+    $ cd yourrepo
+    $ git config --add campfire.user your.ci.server@gmail.com
+    $ git config --add campfire.password s3cr3t
+    etc
+
+If it's not obvious, you do in fact need to have this gmail account and
+the password does in fact need to be valid.
+
+CI Joe gives you Campfire (and only Campfire) by default, but Snake Eyes
+makes you specify your notifier in your project's `.git/config`. Sorry for
+the extra work.
+
+    [cijoe]
+    	notifier = CIJoe::Gmail
+
+Or:
+
+    [cijoe]
+    	notifier = CIJoe::Campfire
+
+Extending Snake Eyes to support additional notifiers is very, very easy.
+Even though Chris Wanstraäth, CI Joe's author, was very, very explicit
+about not supporting any kind of notifier except the Campfire notifier,
+his code furnishes an API which is very, very extensible and very, very
+friendly to repurposing.
+
+The CI Joe Campfire notifier uses a `valid_config?` method to check that the
+notifier will be able to work. If so, it loads the Campfire module right into
+CI Joe, so that when CI Joe calls `notify`, it's calling the `notify` on the
+Campfire module. If you're creating your own notifier module, all you need
+to support is an `activate` method on the module itself and a `notify` instance
+method. Copying the `valid_config?` pattern is strongly advised but absolutely
+not required.
+
+Warning: Snake Eyes enables arbitrary notifiers using a language feature
+called `eval`. Many people believe `eval` is evil. All who know it fear
+its power. Snake Eyes is comfortable with `eval` because Snake Eyes is a
+fucking ninja. If you cut yourself on a sharp piece of `eval`, don't come crying
+to Snake Eyes. You'll never find him. Because he's a ninja.
 
 Multiple Projects
 -----------------
@@ -129,12 +178,16 @@ Want to run Joe as a daemon? Use `nohup`:
 Other CI Servers
 ----------------
 
-Need more features? More notifiers? Check out one of these bad boys:
+Need more features? Check out one of these bad boys:
 
 * [Cerberus](http://cerberus.rubyforge.org/)
 * [Integrity](http://integrityapp.com/)
 * [CruiseControl.rb](http://cruisecontrolrb.thoughtworks.com/)
 * [BuildBot](http://buildbot.net/trac)
+
+Need less notifiers? Check out the original CI Joe:
+
+* [CI Joe](http://github.com/defunkt/cijoe)
 
 
 Screenshots
@@ -148,7 +201,12 @@ Screenshots
 Questions? Concerns?
 --------------------
 
+For CI Joe:
+
 [Issues](http://github.com/defunkt/cijoe/issues) or [the mailing list](http://groups.google.com/group/cijoe).
 
-
 ( Chris Wanstrath :: chris@ozmm.org )
+
+For Snake Eyes:
+
+( Giles Bowkett :: gilesb@gmail.com )
