@@ -207,6 +207,6 @@ For CI Joe:
 
 ( Chris Wanstrath :: chris@ozmm.org )
 
-For Snake Eyes:
+For Snake Eyes: do not attempt to contact Snake Eyes. Snake Eyes is a ninja.
 
 ( Giles Bowkett :: gilesb@gmail.com )
